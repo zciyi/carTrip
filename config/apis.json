@@ -1,0 +1,10 @@
+{
+    "/login":"/external/auth/login",
+    "/getCarTrip":"/admin/carTrip/get/{id}",
+    "/deleteCarTrip":"/admin/carTrip/delete/{id}",
+    "/saveCarTrip":"/admin/carTrip/create",
+    "/updateCarTrip":"/admin/carTrip/update/{id}",
+    "/getCarTripList":"/admin/carTrip/list",
+    "/exportCarTripList":"/admin/carTrip/export"
+
+}

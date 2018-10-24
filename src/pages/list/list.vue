@@ -17,11 +17,12 @@
             
             <el-button  type="primary" size="large" class="M-Btn" @click="searchData">搜索</el-button>
         </div>
-        <div class="addBtn M-Con-left" >
+        <!-- <div class="addBtn M-Con-left" >
             <el-button type="primary"  class="M-Btn"  @click="add()">录入 </el-button>
         </div>
-        <!--   :summary-method="getSummaries"
-            show-summary -->
+       :summary-method="getSummaries"
+            show-summary 
+        </div> -->
         <el-table
             :data="tableData"
             style="width: 100%;" >
@@ -44,7 +45,8 @@
             prop="endPlace"
             label="收货地">
             </el-table-column>
-            <el-table-column
+
+            <!-- <el-table-column
             label="规格型号">
                 <template slot-scope="scope">
                    <div v-for ='n in scope.row.productDtoList'  class="tableDiv" track-by="$index">{{n.model}}</div> 
@@ -61,7 +63,21 @@
                 <template slot-scope="scope">
                    <div v-for ='n in scope.row.productDtoList' class="tableDiv" track-by="$index">{{n.transportationMeter}}</div> 
                 </template>
+            </el-table-column> -->
+
+            <el-table-column
+            prop="model"
+            label="规格型号">
             </el-table-column>
+            <el-table-column
+            prop="theoreticalWeight"
+            label="理论重量">
+            </el-table-column>
+            <el-table-column
+            prop="transportationMeter"
+            label="运输米数">
+            </el-table-column>
+
             <el-table-column
             prop="totalWeight"
             label="总重量">
@@ -103,7 +119,7 @@
                 label="操作"
                 width="100">
                 <template slot-scope="scope">
-                    <el-button @click="add(scope)" type="text" size="small">编辑</el-button>
+                    <!-- <el-button @click="add(scope)" type="text" size="small">编辑</el-button> -->
                     <el-button @click="deleteList(scope)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>

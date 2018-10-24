@@ -68,7 +68,7 @@ export default {
         text:"车队运输明细录入",
         path:"/insert"
       },{
-        text:"车队运输明细",
+        text:"车队运输明细列表",
         path:"/list"
         ,hasSubNav:true
         ,subNav:[{

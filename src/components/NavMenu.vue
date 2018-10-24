@@ -14,8 +14,14 @@ import './NavMenu.less'
     data(){
         return {
           nav:[{
-            text:"运输管理",
+            text:"车队运输明细录入",
+            path:"/insert"
+          },{
+            text:"车队运输明细",
             path:"/list"
+          },{
+            text:"公司对账单",
+            path:"/companyBalance"
           }]
           ,activeName:this.$route.path||"/list"
         }

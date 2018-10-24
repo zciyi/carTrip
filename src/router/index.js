@@ -5,6 +5,8 @@ import login from '@/pages/login/login'
 import forbidden from "@/pages/forbidden"
 import list from "@/pages/list/list"
 import listEdit from "@/pages/list/listEdit"
+import companyBalance from "@/pages/companyBalance/companyBalance"
+import insert from "@/pages/insert/insert"
 
 
 
@@ -16,8 +18,10 @@ var routes = new Router({
       name: 'contenMain',
       component: contenMain,
       children: [
-        { path: '/list', component: list, name: 'list',text:"list"},
         { path: '/listEdit', component: listEdit, name: 'listEdit',text:"listEdit"},
+        { path: '/insert', component: insert, name: 'insert',text:"车队运输明细录入"},
+        { path: '/list', component: list, name: 'list',text:"车队运输明细"},
+        { path: '/companyBalance', component: companyBalance, name: 'companyBalance',text:"公司对账单"}
       ]
     },
     {

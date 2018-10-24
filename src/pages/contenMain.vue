@@ -2,7 +2,10 @@
    <div class="P-layout">
         <top-header></top-header>
         <el-row :gutter="20" class="P-layoutMain">
-            <el-col :span="24" class="P-layoutCon">
+          <el-col :span="4" class="P-layoutNav">
+              <nav-list></nav-list>
+          </el-col>
+          <el-col :span="20" class="P-layoutCon">
                 <div class="P-layoutBreadcrumb">
                   <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: c.path }" v-for="c in curNav" :key="c.path">{{c.text}}</el-breadcrumb-item>
@@ -62,7 +65,10 @@ export default {
       cur = [];
       var me = this;
       var breadcrumb = [{
-        text:"运输管理",
+        text:"车队运输明细录入",
+        path:"/insert"
+      },{
+        text:"车队运输明细",
         path:"/list"
         ,hasSubNav:true
         ,subNav:[{
@@ -70,6 +76,9 @@ export default {
             path:"/listEdit"
           }
         ]
+      },{
+        text:"公司对账单",
+        path:"/companyBalance"
       }]
       this.forItem(breadcrumb,val,cur,[])
       return cur

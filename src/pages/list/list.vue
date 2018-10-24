@@ -20,10 +20,10 @@
         <div class="addBtn M-Con-left" >
             <el-button type="primary"  class="M-Btn"  @click="add()">录入 </el-button>
         </div>
+        <!--   :summary-method="getSummaries"
+            show-summary -->
         <el-table
             :data="tableData"
-            :summary-method="getSummaries"
-            show-summary
             style="width: 100%;" >
             <el-table-column
             prop="tripTime"
@@ -119,9 +119,9 @@
             :total="total">
             </el-pagination>
         </div>
-        <div class="P-listExport">
+        <!-- <div class="P-listExport">
              <el-button  type="primary" size="large" class="M-Btn" @click="exportDat">导出</el-button>
-        </div>
+        </div> -->
     </div>
 </template>
 

@@ -17,7 +17,7 @@ import './NavMenu.less'
             text:"车队运输明细录入",
             path:"/insert"
           },{
-            text:"车队运输明细",
+            text:"车队运输明细列表",
             path:"/list"
           },{
             text:"公司对账单",

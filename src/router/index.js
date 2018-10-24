@@ -20,7 +20,7 @@ var routes = new Router({
       children: [
         { path: '/listEdit', component: listEdit, name: 'listEdit',text:"listEdit"},
         { path: '/insert', component: insert, name: 'insert',text:"车队运输明细录入"},
-        { path: '/list', component: list, name: 'list',text:"车队运输明细"},
+        { path: '/list', component: list, name: 'list',text:"车队运输明细列表"},
         { path: '/companyBalance', component: companyBalance, name: 'companyBalance',text:"公司对账单"}
       ]
     },

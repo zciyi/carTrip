@@ -1,0 +1,51 @@
+.P-insert{
+    &Base{
+        
+        margin: 20px 0;
+        position: relative;
+        text-align: left;
+        display:flex;
+        &Tip{
+            position: absolute;
+            width: 95px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            left: 0;
+            height: 100%;
+            line-height: 100%;
+            padding-left: 6px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e8e8e8;
+            border-top: 1px solid #e8e8e8;
+            border-left: 1px solid #e8e8e8;
+
+        }
+        &Main{
+            margin-left:95px;
+            border: 1px solid #e8e8e8;
+            border-bottom: none;
+            border-right: none;
+        }
+        &Con{
+            display:flex;
+            font-size: 12px;
+            >div{
+                flex: 1;
+                line-height: 40px;
+                border-bottom: 1px solid #e8e8e8;
+                border-right: 1px solid #e8e8e8;
+                padding-left:6px; 
+                input{
+                    width: 100%;
+                    margin: 0;
+                    padding-right: 6px; 
+                    box-sizing: border-box;
+                    border: none;
+
+                }
+            }
+
+        }
+    }
+}

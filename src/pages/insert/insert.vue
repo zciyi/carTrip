@@ -23,8 +23,8 @@
                         </el-date-picker>
                     </div>
                     <div><input type="text" v-model="base.carNumber" /></div>
-                    <div><input type="text" v-model="base.startPlace" /></div>
-                    <div><input type="text" v-model="base.endPlace" /></div>
+                    <div><input type="text" v-model="base.startPlace" @click="showPop(base.startPlace,'base','发货地','startPlace')" /></div>
+                    <div><input type="text" v-model="base.endPlace" @click="showPop(base.endPlace,'base','收货地','endPlace')" /></div>
                     <div><input type="text" v-model="base.model" /></div>
                     <div><input type="text" v-model="base.theoreticalWeight" /></div>
                     <div><input type="text" v-model="base.oneTripExtract" /></div>
@@ -63,14 +63,14 @@
             prop="startPlace"
             label="发货地">
                 <template slot-scope="scope">
-                    <input type="text" v-model="scope.row.startPlace" /> 
+                    <input type="text" v-model="scope.row.startPlace" @click="showPop(scope,'table','发货地','endPlace')"/> 
                 </template>
             </el-table-column>
             <el-table-column
             prop="endPlace"
             label="收货地">
                 <template slot-scope="scope">
-                    <input type="text" v-model="scope.row.endPlace" /> 
+                    <input type="text" v-model="scope.row.endPlace" @click="showPop(scope,'table','收货地','endPlace')"/> 
                 </template>
             </el-table-column>
             <el-table-column
@@ -172,6 +172,23 @@
             <el-button class="M-Btn" type="primary" @click="save">保存</el-button>
 
         </div>
+        <el-dialog
+            :title="pop.title"
+            :visible.sync="pop.visible"
+            width="60%"
+            :before-close="pop.close"
+            center>
+        <el-form ref="form" :model="form" label-width="150px">
+            <el-form-item  >
+                <span slot="label">{{form.text}}</span>
+                <el-input v-model="form.value" placeholder="请输入"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+                <el-button class="M-Btn" @click="pop.visible = false">取 消</el-button>
+                <el-button class="M-Btn" type="primary" @click="pop.confirm">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -250,6 +267,7 @@
     };
     export default {
         data() {
+            var me =this;
             var base= localStorage.getItem("_CARTRIP_INSERT_") && JSON.parse(localStorage.getItem("_CARTRIP_INSERT_")) 
             return {
                 base:{
@@ -263,6 +281,32 @@
                     unitPrice:(base&&base.unitPrice)||''
                 },
                 tableData:[]
+                ,pop:{
+                    visible:false,
+                    item:null,
+                    type:'',
+                    key:"",
+                    close:(done)=>{
+                        done()
+                    },
+                    confirm:function(){
+                        switch( me.pop.type){
+                            case"base":
+                                me.base[me.pop.key] = me.form.value;
+                                break
+                            case"table":
+                                me.tableData[me.pop.item.$index][me.pop.key]=me.form.value;
+                                me.$set(me.tableData,me.tableData[me.pop.item.$index],me.tableData[me.pop.item.$index])
+                                break
+                        }
+                        me.pop.visible = false;
+
+                    }
+                },
+                form:{
+                    value:"",
+                    text:''
+                }
             }
         },
         destroyed: function () {
@@ -347,6 +391,25 @@
                     duration:duration||1000
                 });
 
+            },
+            showPop(row,type,name,key){
+               
+                this.pop.title = name;
+                this.form.text = name;
+                this.pop.type = type;
+                switch(type){
+                    case"base":
+                        this.form.value = row;
+                        this.pop.title = "批发默认值"+name;
+                        this.form.text = "批发默认值"+name;
+                        break
+                    case"table":
+                        this.form.value = row[key];
+                        break
+                }
+                this.pop.item = row;
+                this.pop.key = key;
+                this.pop.visible = true;
             }
 
         }

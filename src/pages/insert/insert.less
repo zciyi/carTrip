@@ -1,4 +1,8 @@
 .P-insert{
+    .addBtn{
+        margin-bottom: 10px;
+        text-align: left;
+    }
     &Base{
         
         margin: 20px 0;
@@ -35,11 +39,11 @@
                 line-height: 40px;
                 border-bottom: 1px solid #e8e8e8;
                 border-right: 1px solid #e8e8e8;
-                padding-left:6px; 
+                padding:0  6px; 
                 input{
                     width: 100%;
                     margin: 0;
-                    padding-right: 6px; 
+                    padding:0  6px; 
                     box-sizing: border-box;
                     border: none;
 
@@ -47,5 +51,22 @@
             }
 
         }
+    }
+    .tableDiv{
+        padding: 10px 0;
+        border-bottom: 1px solid #909399;
+    }
+    .cell{
+        .tableDiv:last-child{
+            border-bottom: none;
+        }
+        padding: 0 6px;
+        input{
+            width: 100%;
+        }
+    }
+    .el-table{
+        border: 1px solid #ebeef5;
+        border-bottom:none; 
     }
 }

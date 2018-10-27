@@ -404,18 +404,19 @@
                     this.form.oneHundredKilometersOil = totalWeight?format.add(40,format.mul(format.subtraciotn(totalWeight,40),0.4)):0
                     this.form.oneKilometersOil =  this.form.oneHundredKilometersOil/100;
                     this.form.totalOil = format.mul(this.form.transportationKilometers,this.form.oneKilometersOil)
-                    if(Number(totalWeight)>70&&Number(totalWeight)<=110){
-                        this.form.overWeightExtract = format.mul(format.subtraciotn(totalWeight,70),5);
-                    }else if(Number(totalWeight)>110){
-                        this.form.overWeightExtract = format.mul(format.subtraciotn(totalWeight,110),7);
-                    }else{
-                        this.form.overWeightExtract = 0;
-                    }
+                    
                 }
             },
             "form.transportationKilometers": function (nval, oval) {
                 if(nval){
                     this.form.totalOil = format.mul(this.form.transportationKilometers,this.form.oneKilometersOil);
+                    if(Number(nval)>70&&Number(nval)<=110){
+                        this.form.overWeightExtract = format.mul(format.subtraciotn(nval,70),5);
+                    }else if(Number(nval)>110){
+                        this.form.overWeightExtract = format.mul(format.subtraciotn(nval,110),7);
+                    }else{
+                        this.form.overWeightExtract = 0;
+                    }
                     
                 }
             },

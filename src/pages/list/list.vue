@@ -119,7 +119,7 @@
                 label="操作"
                 width="100">
                 <template slot-scope="scope">
-                    <el-button @click="add(scope)" type="text" size="small">编辑</el-button>
+                    <!-- <el-button @click="add(scope)" type="text" size="small">编辑</el-button> -->
                     <el-button @click="deleteList(scope)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>

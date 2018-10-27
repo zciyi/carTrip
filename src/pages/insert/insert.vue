@@ -6,7 +6,7 @@
                 <div  class="P-insertBaseCon">
                     <div>日期</div>
                     <div>车牌号</div>
-                    <div>出发地</div>
+                    <div>发货地</div>
                     <div>收货地</div>
                     <div>规格型号</div>
                     <div>理论重量</div>
@@ -15,7 +15,13 @@
                     
                 </div>
                 <div class="P-insertBaseCon">
-                    <div><input type="text" v-model="base.tripTime" /></div>
+                    <div>
+                        <el-date-picker
+                            v-model="base.tripTime" 
+                            type="date"
+                            placeholder="选择日期">
+                        </el-date-picker>
+                    </div>
                     <div><input type="text" v-model="base.carNumber" /></div>
                     <div><input type="text" v-model="base.startPlace" /></div>
                     <div><input type="text" v-model="base.endPlace" /></div>
@@ -39,7 +45,11 @@
             label="日期">
                 <template slot-scope="scope">
                     <!-- {{scope.row.tripTime|timeStr}}    -->
-                    <input type="text" v-model="scope.row.tripTime" /> 
+                    <el-date-picker
+                        v-model="scope.row.tripTime" 
+                        type="date"
+                        placeholder="选择日期">
+                    </el-date-picker>
                 </template>
             </el-table-column>
             <el-table-column
@@ -240,19 +250,23 @@
     };
     export default {
         data() {
+            var base= localStorage.getItem("_CARTRIP_INSERT_") && JSON.parse(localStorage.getItem("_CARTRIP_INSERT_")) 
             return {
                 base:{
-                    tripTime:'',
-                    carNumber:'',
-                    startPlace:'',
-                    endPlace:'',
-                    model:'',
-                    theoreticalWeight:'',
-                    oneTripExtract:'',
-                    unitPrice:''
+                    tripTime: (base&&base.tripTime)||'',
+                    carNumber:(base&&base.carNumber)||'',
+                    startPlace:(base&&base.startPlace)||'',
+                    endPlace:(base&&base.endPlace)||'',
+                    model:(base&&base.model)||'',
+                    theoreticalWeight:(base&&base.theoreticalWeight)||'',
+                    oneTripExtract:(base&&base.oneTripExtract)||'',
+                    unitPrice:(base&&base.unitPrice)||''
                 },
                 tableData:[]
             }
+        },
+        destroyed: function () {
+            localStorage.setItem("_CARTRIP_INSERT_",JSON.stringify(this.base) )
         },
         methods: {
             formatNum(val){

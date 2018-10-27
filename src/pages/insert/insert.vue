@@ -302,6 +302,9 @@
                 })
             },
             save(){
+                if(!this.tableData.length){
+                    return this.tip('请添加数据');
+                }
                 var me =this;
                 if(me.load)return
                 me.load = true

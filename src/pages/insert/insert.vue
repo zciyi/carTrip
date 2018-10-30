@@ -321,13 +321,24 @@
                 row.oneHundredKilometersOil = this.formatNum(row.totalWeight?format.add(40,format.mul(format.subtraciotn(row.totalWeight,40),0.4)):0)
                 row.oneKilometersOil =  this.formatNum(row.oneHundredKilometersOil/100);
                 row.totalOil = this.formatNum(format.mul(row.transportationKilometers,row.oneKilometersOil));
-                if(Number(row.transportationKilometers)>70&&Number(row.transportationKilometers)<=110){
-                    row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.transportationKilometers,70),5));
-                }else if(Number(row.transportationKilometers)>110){
-                    row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.transportationKilometers,110),7));
+                
+                if(Number(row.totalWeight)>70){
+                    if(row.transportationKilometers > 120){
+                        row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.totalWeight,70),7));
+                    }else{
+                        row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.totalWeight,70),5));
+                    }
                 }else{
                     row.overWeightExtract = 0;
                 }
+
+                // if(Number(row.transportationKilometers)>70&&Number(row.transportationKilometers)<=110){
+                //     row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.transportationKilometers,70),5));
+                // }else if(Number(row.transportationKilometers)>110){
+                //     row.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(row.transportationKilometers,110),7));
+                // }else{
+                //     row.overWeightExtract = 0;
+                // }
                 row.totalOil = this.formatNum(format.mul(row.transportationKilometers,row.oneKilometersOil));
                 row.money = this.formatNum(format.mul( row.totalWeight,row.unitPrice));
             },

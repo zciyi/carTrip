@@ -5,8 +5,9 @@
     "/saveCarTrip":"/admin/carTrip/create",
     "/updateCarTrip":"/admin/carTrip/update/{id}",
     "/getCarTripList":"/admin/carTrip/list",
-    "/exportCarTripList":"/admin/carTrip/export",
+    "/exportCarTripList":"/admin/carTrip/export/list",
     "/getCompanyBalance":"/admin/carTrip/companyBalance",
-    "/batchCarTrip":"/admin/carTrip/batchCreate"
+    "/batchCarTrip":"/admin/carTrip/batchCreate",
+    "/exportCarTripCompanyBalance":"/admin/carTrip/export/companyBalance"
 
 }

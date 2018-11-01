@@ -31,7 +31,7 @@
             <div class="P-companyBalanceMain">
                 <div>{{allDat.startPlace}}</div>
                 <div>{{allDat.endPlace}}</div>
-                <div>{{allDat.model|}}</div>
+                <div>{{allDat.model}}</div>
                 <div>{{allDat.theoreticalWeight||0}}</div>
                 <div>{{allDat.unitPrice||0}}</div>
                 <div>{{allDat.allTransportationMeter||0}}</div>
@@ -39,6 +39,9 @@
                 <div>{{allDat.allMoney||0}}</div>
             </div>
         </div>
+        <div class="P-companyBalanceExport">
+            <el-button  type="primary" size="large" class="M-Btn" @click="exportDat">导出</el-button>
+       </div>
     </div>
 </template>
 
@@ -48,6 +51,8 @@
         return  +new Date(value);
 
     }
+    var Token = localStorage.getItem("_SHANDONG_PASS_IN_TOKEN")||""
+
     export default {
         data() {
             return {
@@ -58,7 +63,16 @@
                     startTime:"",
                     endTime:""
                 },
-                allDat:{},
+                allDat:{
+                    startPlace:'',
+                    endPlace:'',
+                    model:'',
+                    theoreticalWeight:'',
+                    unitPrice:'',
+                    allTransportationMeter:'',
+                    allTotalWeight:'',
+                    allMoney:''
+                },
                 queryDat:{}
             }
         },
@@ -89,6 +103,18 @@
                 }               
                 this.currentPage =1;
                 this.getData(this.search);
+            },
+            exportDat(){
+                var me =this
+                var url= this.$config.protocol+"://"+this.$config.biServer+this.$config.apis["/exportCarTripCompanyBalance"]+"?" ;
+                if(this.queryDat){
+                    Object.keys(this.queryDat).forEach(function(item){
+                        url+=item+"="+me.queryDat[item]+"&"
+                    })
+                }
+                url+="X-Authorization="+Token;
+                window.location.href = url;
+
             }
             
         }

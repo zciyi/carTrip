@@ -73,7 +73,12 @@
                     allTotalWeight:'',
                     allMoney:''
                 },
-                queryDat:{}
+                queryDat:{
+                    carNumber:'',
+                    startPlace:'',
+                    startTime:'',
+                    endTime:''
+            }
             }
         },
         created:function(){
@@ -105,6 +110,10 @@
                 this.getData(this.search);
             },
             exportDat(){
+                if(!this.queryDat ||!this.queryDat.startPlace){
+                    return this.tip( '请搜索发货地');
+
+                }
                 var me =this
                 var url= this.$config.protocol+"://"+this.$config.biServer+this.$config.apis["/exportCarTripCompanyBalance"]+"?" ;
                 if(this.queryDat){
@@ -114,6 +123,14 @@
                 }
                 url+="X-Authorization="+Token;
                 window.location.href = url;
+
+            },
+             tip(title,type,duration){
+                this.$notify({
+                    title: title || '',
+                    type: type||'success',
+                    duration:duration||1000
+                });
 
             }
             

@@ -36,50 +36,36 @@
             label="车牌号">
             </el-table-column>
             <el-table-column
-            prop="carNumber"
-            label="车牌号">
+            prop="costOilAmout"
+            label="加油数量">
             </el-table-column>
             <el-table-column
-            prop="startPlace"
-            label="发货地">
+            prop="costOilMoney"
+            label="加油费用">
             </el-table-column>
             <el-table-column
-            prop="endPlace"
-            label="收货地">
-            </el-table-column>
-
-            <el-table-column
-            prop="model"
-            label="规格型号">
+            prop="costTyreMoney"
+            label="轮胎费用">
             </el-table-column>
             <el-table-column
-            prop="theoreticalWeight"
-            label="理论重量">
+            prop="costPartsMoney"
+            label="配件费用">
             </el-table-column>
             <el-table-column
-            prop="transportationMeter"
-            label="运输米数">
-            </el-table-column>
-
-            <el-table-column
-            prop="totalWeight"
-            label="总重量">
+            prop="costOtherMoney"
+            label="其它费用">
             </el-table-column>
             <el-table-column
-            prop="transportationKilometers"
-            label="运输公里数">
+            prop="costAllMoney"
+            label="总费用">
             </el-table-column>
             <el-table-column
-            prop="totalOil"
-            label="油耗">
+            prop="payType"
+            label="付款方式">
             </el-table-column>
             <el-table-column
-            prop="overWeightExtract"
-            label="超吨提成">
-            </el-table-column>
-            <el-table-column
-            prop="oneTripExtract"
-            label="单趟提成">
+            prop="remark"
+            label="备注">
             </el-table-column>
         </el-table>
         <div class="pagination">

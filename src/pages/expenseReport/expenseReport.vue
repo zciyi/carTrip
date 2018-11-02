@@ -21,7 +21,7 @@
        :summary-method="getSummaries"
             show-summary 
         </div> -->
-        <el-table
+        <!-- <el-table
             :data="tableData"
             style="width: 100%;" >
             <el-table-column
@@ -73,7 +73,7 @@
                 label="操作"
                 width="100">
                 <template slot-scope="scope">
-                    <!-- <el-button @click="add(scope)" type="text" size="small">编辑</el-button> -->
+                    
                     <el-button @click="deleteList(scope)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>
@@ -88,10 +88,23 @@
             layout="total,prev, pager, next,sizes,jumper"
             :total="total">
             </el-pagination>
-        </div>
-        <!-- <div class="P-listExport">
-             <el-button  type="primary" size="large" class="M-Btn" @click="exportDat">导出</el-button>
         </div> -->
+        <div class="P-companyBalanceCon">
+            <div  class="P-companyBalanceMain">
+                <div>车牌号</div>
+                <div>油耗</div>
+                <div>油价</div>
+                <div>油耗差额</div>
+                <div>工资</div>
+            </div>
+            <div class="P-companyBalanceMain">
+                <div>{{all&&all.startPlace}}</div>
+                <div>{{all&&all.endPlace||0}}</div>
+                <div>{{all&&all.model||0}}</div>
+                <div>{{all&&all.theoreticalWeight||0}}</div>
+                <div>{{all&&all.unitPrice||0}}</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -118,7 +131,8 @@
                     endTime:""
                 },
                 allDat:{},
-                queryDat:{}
+                queryDat:{},
+                all:{}
             }
         },
         created:function(){
@@ -139,11 +153,12 @@
                         endTime:timeString(qr&&qr.endTime)||''
                     }
                 }).then(function(re){
-                    me.tableData = re.items;
-                    me.currentPage = re.pageNo;
-                    me.pagesSize = re.pageSize;
-                    me.total = re.total;
-                    me.allDat = re.listStatistics;
+                    // me.tableData = re.items;
+                    // me.currentPage = re.pageNo;
+                    // me.pagesSize = re.pageSize;
+                    // me.total = re.total;
+                    // me.allDat = re.listStatistics;
+                    me.all=re
                 })
             },
             handleSizeChange(val) {

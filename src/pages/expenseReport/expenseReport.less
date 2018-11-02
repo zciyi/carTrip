@@ -1,4 +1,4 @@
-.P-list{
+.P-companyBalance{
     position: relative;
     margin-top:10px; 
     box-sizing: content-box; 
@@ -34,49 +34,25 @@
             line-height: normal;
         }
     }
-    .addBtn{
-        margin-bottom: 10px;
+    &Con{
         text-align: left;
+        border: 1px solid #e8e8e8;
+        border-bottom: none;
+        border-right: none;
     }
-    .pagination{
-        margin: 10px 0;
-        text-align: right;
-        background: #f7f7f7;
-        padding: 10px 0;
-        .el-pagination__jump{
-            padding: 0 10px;
+    &Main{
+        display:flex;
+        font-size: 12px;
+        >div{
+            flex: 1;
+            line-height: 40px;
+            border-bottom: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+            padding-left: 5px;
         }
-        .el-pagination button
-        ,.el-pagination button:disabled
-        ,.el-pager li{
-            background: #f7f7f7;
-        }
-        .el-input{
-            line-height: normal;
-        }
-        .el-input__inner{
-            height: 28px;
-        }
-        .el-pagination__jump{
-            margin-left: 0;
-        }
-    }
-    .tableDiv{
-        padding: 10px 0;
-        border-bottom: 1px solid #909399;
-    }
-    .cell{
-        .tableDiv:last-child{
-            border-bottom: none;
-        }
-    }
-    .el-table{
-        border: 1px solid #ebeef5;
-        border-bottom:none; 
     }
     &Export{
-        position: absolute;
-        margin-top: -50px;
-        left: 20px;
+        text-align: left;
+        margin-top: 20px;
     }
 }

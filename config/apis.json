@@ -8,6 +8,10 @@
     "/exportCarTripList":"/admin/carTrip/export/list",
     "/getCompanyBalance":"/admin/carTrip/companyBalance",
     "/batchCarTrip":"/admin/carTrip/batchCreate",
-    "/exportCarTripCompanyBalance":"/admin/carTrip/export/companyBalance"
+    "/exportCarTripCompanyBalance":"/admin/carTrip/export/companyBalance",
+    "/batchCarTripCost":"/admin/carTrip/cost/batchCreate",
+    "/deleteCarTripCost":"/admin/carTrip/cost/delete/{id}",
+    "/getCarTripCostList":"/admin/carTrip/cost/list",
+    "/getCarTripCostCompanyBalance":"/admin/carTrip/cost/companyBalance"
 
 }

@@ -79,6 +79,15 @@ export default {
       },{
         text:"公司对账单",
         path:"/companyBalance"
+      },{
+        text:"车辆费用录入",
+        path:"/expenseInsert"
+      },{
+        text:"车辆费用明细",
+        path:"/expenseList"
+      },{
+        text:"车辆工资报表",
+        path:"/expenseReport"
       }]
       this.forItem(breadcrumb,val,cur,[])
       return cur

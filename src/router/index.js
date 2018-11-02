@@ -7,6 +7,9 @@ import list from "@/pages/list/list"
 import listEdit from "@/pages/list/listEdit"
 import companyBalance from "@/pages/companyBalance/companyBalance"
 import insert from "@/pages/insert/insert"
+import expenseInsert from "@/pages/expenseInsert/expenseInsert"
+import expenseList from "@/pages/expenseList/expenseList"
+import expenseReport from "@/pages/expenseReport/expenseReport"
 
 
 
@@ -21,7 +24,10 @@ var routes = new Router({
         { path: '/listEdit', component: listEdit, name: 'listEdit',text:"listEdit"},
         { path: '/insert', component: insert, name: 'insert',text:"车队运输明细录入"},
         { path: '/list', component: list, name: 'list',text:"车队运输明细列表"},
-        { path: '/companyBalance', component: companyBalance, name: 'companyBalance',text:"公司对账单"}
+        { path: '/companyBalance', component: companyBalance, name: 'companyBalance',text:"公司对账单"},
+        { path: '/expenseInsert', component: expenseInsert, name: 'expenseInsert',text:"车辆费用录入"},
+        { path: '/expenseList', component: expenseList, name: 'expenseList',text:"车辆费用明细"},
+        { path: '/expenseReport', component: expenseReport, name: 'expenseReport',text:"expenseReport"}
       ]
     },
     {

@@ -6,6 +6,7 @@
                 <div  class="P-insertBaseCon">
                     <div>日期</div>
                     <div>车牌号</div>
+                    <div>驾驶员</div>
                     <div>发货地</div>
                     <div>收货地</div>
                     <div>规格型号</div>
@@ -23,6 +24,7 @@
                         </el-date-picker>
                     </div>
                     <div><input type="text" v-model="base.carNumber" /></div>
+                    <div><input type="text" v-model="base.dirverName" /></div>
                     <div><input type="text" v-model="base.startPlace" @click="showPop(base.startPlace,'base','发货地','startPlace')" /></div>
                     <div><input type="text" v-model="base.endPlace" @click="showPop(base.endPlace,'base','收货地','endPlace')" /></div>
                     <div><input type="text" v-model="base.model" /></div>
@@ -57,6 +59,13 @@
             label="车牌号">
                 <template slot-scope="scope">
                     <input type="text" v-model="scope.row.carNumber" /> 
+                </template>
+            </el-table-column>
+            <el-table-column
+            prop="dirverName"
+            label="驾驶员">
+                <template slot-scope="scope">
+                    <input type="text" v-model="scope.row.dirverName" /> 
                 </template>
             </el-table-column>
             <el-table-column
@@ -346,6 +355,7 @@
                 this.tableData.push({
                     tripTime:this.base.tripTime||'',
                     carNumber:this.base.carNumber||'',
+                    dirverName:this.base.dirverName||'',
                     startPlace:this.base.startPlace||'',
                     endPlace:this.base.endPlace||'',
                     model:this.base.model||'',

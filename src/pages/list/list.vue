@@ -2,6 +2,7 @@
     <div class="P-list">
         <div class="M-search">
             <el-input v-model="search.carNumber" placeholder="车牌号"></el-input>
+            <el-input v-model="search.dirverName" placeholder="驾驶员"></el-input>
             <el-input v-model="search.startPlace" placeholder="发货地"></el-input>
             <el-input v-model="search.endPlace" placeholder="收货地"></el-input>
             <el-date-picker
@@ -160,6 +161,7 @@
                     carNumber:"",
                     startPlace:"",
                     endPlace:"",
+                    dirverName:'',
                     startTime:"",
                     endTime:""
                 },
@@ -181,6 +183,7 @@
                         pageNo:pageNo,
                         pageSize:pageSize,
                         carNumber:(qr&&qr.carNumber)||'',
+                        dirverName:(qr&&qr.dirverName)||'',
                         startPlace:(qr&&qr.startPlace)||'',
                         endPlace:(qr&&qr.endPlace)||'',
                         startTime:timeString(qr&&qr.startTime)||'',

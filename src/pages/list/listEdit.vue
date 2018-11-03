@@ -10,7 +10,10 @@
             </el-form-item>
             <el-form-item label="车牌号" required>
                     <el-input v-model="form.carNumber" placeholder="请输入车牌号"></el-input>
-                </el-form-item>
+            </el-form-item>
+            <el-form-item label="驾驶员" required>
+                <el-input v-model="form.dirverName" placeholder="请输入驾驶员"></el-input>
+            </el-form-item>
             <el-form-item label="发货地" required>
                 <el-input v-model="form.startPlace" placeholder="请输入发货地"></el-input>
             </el-form-item>
@@ -182,6 +185,7 @@
                     "transportationKilometers": 0,
                     "tripTime": "",
                     "unitPrice": 0,
+                    "dirverName":"",
                     tpm:{
                         "model": "",
                         "theoreticalWeight": '',

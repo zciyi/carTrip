@@ -190,7 +190,15 @@
         <el-form ref="form" :model="form" label-width="150px">
             <el-form-item  >
                 <span slot="label">{{form.text}}</span>
-                <el-input v-model="form.value" placeholder="请输入"></el-input>
+                <el-autocomplete
+                class="inline-input"
+                v-model="form.value"
+                :fetch-suggestions="querySearch"
+                placeholder="请输入"
+                @select="handleSelect"
+                @blur="changeValue"
+                ></el-autocomplete>
+                <!-- <el-input v-model="form.value" placeholder="请输入"></el-input> -->
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -278,6 +286,7 @@
         data() {
             var me =this;
             var base= localStorage.getItem("_CARTRIP_INSERT_") && JSON.parse(localStorage.getItem("_CARTRIP_INSERT_")) 
+            var options = localStorage.getItem("_CARTRIP_INSERT_OPSTIONS_")&& JSON.parse(localStorage.getItem("_CARTRIP_INSERT_OPSTIONS_")) 
             return {
                 base:{
                     tripTime: (base&&base.tripTime)||'',
@@ -316,11 +325,16 @@
                 form:{
                     value:"",
                     text:''
+                },
+                options:{
+                    startPlace:(options&&options.startPlace)||[],
+                    endPlace:(options&&options.endPlace)||[]
                 }
             }
         },
         destroyed: function () {
             localStorage.setItem("_CARTRIP_INSERT_",JSON.stringify(this.base) )
+            localStorage.setItem("_CARTRIP_INSERT_OPSTIONS_",JSON.stringify(this.options) )
         },
         methods: {
             formatNum(val){
@@ -432,6 +446,38 @@
                 this.pop.item = row;
                 this.pop.key = key;
                 this.pop.visible = true;
+            }
+            ,querySearch(queryString, cb) {
+                var restaurants = this.options[this.pop.key];
+                var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(queryString) {
+                return (restaurant) => {
+                return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            handleSelect(item) {
+                console.log(item);
+            },
+            changeValue(){
+                if(!this.options[this.pop.key].length){
+                    this.options[this.pop.key].push({value:this.form.value})
+                }else{
+                    var me =this;
+                    var keep =false
+                    this.options[this.pop.key].forEach(el => {
+                        if(el&el.value===me.form.value&&!keep){
+                           keep = true
+                        }
+                    });
+                    if(!keep){
+                        this.options[this.pop.key].push({value:this.form.value})
+                    }
+                }
+                
+               
             }
 
         }

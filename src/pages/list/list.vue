@@ -2,7 +2,7 @@
     <div class="P-list">
         <div class="M-search">
             <el-input v-model="search.carNumber" placeholder="车牌号"></el-input>
-            <el-input v-model="search.dirverName" placeholder="驾驶员"></el-input>
+            <el-input v-model="search.driverName" placeholder="驾驶员"></el-input>
             <el-input v-model="search.startPlace" placeholder="发货地"></el-input>
             <el-input v-model="search.endPlace" placeholder="收货地"></el-input>
             <el-date-picker
@@ -37,6 +37,10 @@
             <el-table-column
             prop="carNumber"
             label="车牌号">
+            </el-table-column>
+            <el-table-column
+            prop="driverName"
+            label="驾驶员">
             </el-table-column>
             <el-table-column
             prop="startPlace"
@@ -161,7 +165,7 @@
                     carNumber:"",
                     startPlace:"",
                     endPlace:"",
-                    dirverName:'',
+                    driverName:'',
                     startTime:"",
                     endTime:""
                 },
@@ -183,7 +187,7 @@
                         pageNo:pageNo,
                         pageSize:pageSize,
                         carNumber:(qr&&qr.carNumber)||'',
-                        dirverName:(qr&&qr.dirverName)||'',
+                        driverName:(qr&&qr.driverName)||'',
                         startPlace:(qr&&qr.startPlace)||'',
                         endPlace:(qr&&qr.endPlace)||'',
                         startTime:timeString(qr&&qr.startTime)||'',

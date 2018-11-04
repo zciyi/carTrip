@@ -31,6 +31,9 @@ import './NavMenu.less'
           },{
             text:"车辆工资报表",
             path:"/expenseReport"
+          },{
+            text:"规格",
+            path:"/modelList"
           }]
           ,activeName:this.$route.path||"/list"
         }

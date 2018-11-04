@@ -12,6 +12,9 @@
     "/batchCarTripCost":"/admin/carTrip/cost/batchCreate",
     "/deleteCarTripCost":"/admin/carTrip/cost/delete/{id}",
     "/getCarTripCostList":"/admin/carTrip/cost/list",
-    "/getCarTripCostCompanyBalance":"/admin/carTrip/cost/companyBalance"
+    "/getCarTripCostCompanyBalance":"/admin/carTrip/cost/companyBalance",
+    "/saveCarTripModel":"/admin/carTrip/modelWeight/create",
+    "/deleteCarTripModel":"/admin/carTrip/modelWeight/delete/{id}",
+    "/getCarTripModelList":"/admin/carTrip/modelWeight/list"
 
 }

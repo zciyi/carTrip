@@ -10,6 +10,7 @@ import insert from "@/pages/insert/insert"
 import expenseInsert from "@/pages/expenseInsert/expenseInsert"
 import expenseList from "@/pages/expenseList/expenseList"
 import expenseReport from "@/pages/expenseReport/expenseReport"
+import modelList from "@/pages/model/model"
 
 
 
@@ -27,7 +28,8 @@ var routes = new Router({
         { path: '/companyBalance', component: companyBalance, name: 'companyBalance',text:"公司对账单"},
         { path: '/expenseInsert', component: expenseInsert, name: 'expenseInsert',text:"车辆费用录入"},
         { path: '/expenseList', component: expenseList, name: 'expenseList',text:"车辆费用明细"},
-        { path: '/expenseReport', component: expenseReport, name: 'expenseReport',text:"expenseReport"}
+        { path: '/expenseReport', component: expenseReport, name: 'expenseReport',text:"车辆工资报表"},
+        { path: '/modelList', component: modelList, name: 'modelList',text:"规格"}
       ]
     },
     {

@@ -70,6 +70,6 @@ module.exports = {
   },
   apis:apis,
   returnCode:returnCode,
-  biServer:"120.79.240.136:8083",
+  biServer:"120.79.240.136:8086",
   protocol:"http" 
 }

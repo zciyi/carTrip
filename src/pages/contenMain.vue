@@ -88,6 +88,9 @@ export default {
       },{
         text:"车辆工资报表",
         path:"/expenseReport"
+      },{
+        text:"规格",
+        path:"/modelList"
       }]
       this.forItem(breadcrumb,val,cur,[])
       return cur

@@ -27,7 +27,18 @@
                     <div><input type="text" v-model="base.driverName" /></div>
                     <div><input type="text" v-model="base.startPlace" @click="showPop(base.startPlace,'base','发货地','startPlace')" /></div>
                     <div><input type="text" v-model="base.endPlace" @click="showPop(base.endPlace,'base','收货地','endPlace')" /></div>
-                    <div><input type="text" v-model="base.model" /></div>
+                    <div>
+                        <el-select v-model="base.model" placeholder="请选择" 
+                        @change="modelChange">
+                            <el-option
+                                v-for="item in modelOptions"
+                                :key="item.id"
+                                :label="item.model"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                        <!-- <input type="text" v-model="base.model" /> -->
+                    </div>
                     <div><input type="text" v-model="base.theoreticalWeight" /></div>
                     <div><input type="text" v-model="base.oneTripExtract" /></div>
                     <div><input type="text" v-model="base.unitPrice" /></div>
@@ -86,7 +97,16 @@
             prop="model"
             label="规格型号">
                 <template slot-scope="scope">
-                    <input type="text" v-model="scope.row.model" /> 
+                    <!-- <input type="text" v-model="scope.row.model" />  -->
+                    <el-select v-model="scope.row.model" placeholder="请选择" 
+                    @change="modelListChange(scope)">
+                        <el-option
+                            v-for="item in modelOptions"
+                            :key="item.id"
+                            :label="item.model"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
                 </template>
             </el-table-column>
             <el-table-column
@@ -329,14 +349,29 @@
                 options:{
                     startPlace:(options&&options.startPlace)||[],
                     endPlace:(options&&options.endPlace)||[]
-                }
+                },
+                modelOptions:[]
             }
         },
         destroyed: function () {
             localStorage.setItem("_CARTRIP_INSERT_",JSON.stringify(this.base) )
             localStorage.setItem("_CARTRIP_INSERT_OPSTIONS_",JSON.stringify(this.options) )
         },
+        created:function(){
+            this.getData();
+        },
         methods: {
+            getData(){
+                var me = this;
+                this.$request({
+                    url:"/getCarTripModelList",
+                    method:"get",
+                    query:{
+                    }
+                }).then(function(re){
+                    me.modelOptions = re;
+                })
+            },
             formatNum(val){
                 return Number(val.toString().match(/^\d+(?:\.\d{0,5})?/))
             },
@@ -400,6 +435,15 @@
                     return this.tip('请添加数据');
                 }
                 var me =this;
+                this.tableData.forEach(function(t){
+                    var model;
+                    me.modelOptions.forEach(function(m){
+                        if(t.model===m.id){
+                            model = m.model;
+                        }
+                    })
+                    t.model = model;
+                })
                 if(me.load)return
                 me.load = true
                 this.$request({
@@ -478,8 +522,25 @@
                 }
                 
                
-            }
+            },
+            modelChange(nval){
+                var me = this;
+                this.modelOptions.forEach(function(m){
+                    if(m.id===nval){
+                        me.base.theoreticalWeight = m.theoreticalWeight;
+                    }
+                })
+            },
+            modelListChange(scope){
+                var theoreticalWeight
+                this.modelOptions.forEach(function(m){
+                    if(m.id===scope.row.model){
+                        theoreticalWeight = m.theoreticalWeight;
+                    }
+                })
+                this.tableData[scope.$index].theoreticalWeight = theoreticalWeight||0;
 
+            }
         }
         
     }

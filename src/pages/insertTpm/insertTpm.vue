@@ -98,8 +98,8 @@
             label="规格型号">
                 <template slot-scope="scope">
                     <!-- <input type="text" v-model="scope.row.model" />  -->
-                    <div v-for="(p,k) in scope.row.productDtoList" track-by="$index" class="model">
-                        <span @click="deleteModel(scope,k)" class="deleteModel"> X</span>
+                    <div v-for="(p,k) in scope.row.productDtoList" track-by="$index" class="model divItem">
+                        <!-- <span @click="deleteModel(scope,k)" class="deleteModel"> X</span> -->
                         <el-select v-model="p.model" placeholder="请选择" 
                         @change="modelListChange(scope,k)">
                             <el-option
@@ -116,7 +116,7 @@
             prop="theoreticalWeight"
             label="理论重量">
                 <template slot-scope="scope">
-                    <div v-for=" p in scope.row.productDtoList" track-by="$index">
+                    <div v-for=" p in scope.row.productDtoList" track-by="$index" class="divItem">
                         <input type="text" v-model="p.theoreticalWeight" /> 
                     </div>
                 </template>
@@ -125,7 +125,7 @@
             prop="transportationMeter"
             label="运输米数">
                 <template slot-scope="scope">
-                    <div v-for=" p in scope.row.productDtoList" track-by="$index">
+                    <div v-for=" p in scope.row.productDtoList" track-by="$index" class="divItem">
                         <input type="text" v-model="p.transportationMeter" /> 
                     </div> 
                 </template>

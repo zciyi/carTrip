@@ -36,33 +36,46 @@
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index" v-show="a.model">
-                        {{a.model}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.model}}
+                        </div>
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.theoreticalWeight||0}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.theoreticalWeight||0}}
+                        </div>
+                        
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.allTransportationMeter||0}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.allTransportationMeter||0}}
+                        </div>
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.allTotalWeight||0}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.allTotalWeight||0}}
+                        </div>
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.unitPrice||0}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.unitPrice||0}}
+                        </div>
                     </div>
                 </td>
                 <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.money||0}}
+                    <div  v-for="a in allDat.items"   track-by="$index">
+                        <div  v-for="i in a.items"   >
+                            {{i.money||0}}
+                        </div>
                     </div>
                 </td>
             </tr>

@@ -28,7 +28,7 @@
                 <td>单价</td>
                 <td>金额</td>
             </tr>
-            <tr class="row">
+            <tr class="row" v-show="allDat.startPlace">
                 <td>{{allDat.startPlace}}</td>
                 <td class="col">
                     <div  v-for="a in allDat.items" track-by="$index">
@@ -65,6 +65,9 @@
                         {{a.money||0}}
                     </div>
                 </td>
+            </tr>
+            <tr v-show="!allDat.startPlace">
+                <td colspan="8">暂无数据</td>
             </tr>
             
         </table>

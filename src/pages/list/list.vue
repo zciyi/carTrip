@@ -51,7 +51,7 @@
             label="收货地">
             </el-table-column>
 
-            <!-- <el-table-column
+            <el-table-column
             label="规格型号">
                 <template slot-scope="scope">
                    <div v-for ='n in scope.row.productDtoList'  class="tableDiv" track-by="$index">{{n.model}}</div> 
@@ -68,9 +68,9 @@
                 <template slot-scope="scope">
                    <div v-for ='n in scope.row.productDtoList' class="tableDiv" track-by="$index">{{n.transportationMeter}}</div> 
                 </template>
-            </el-table-column> -->
+            </el-table-column>
 
-            <el-table-column
+            <!-- <el-table-column
             prop="model"
             label="规格型号">
             </el-table-column>
@@ -81,7 +81,7 @@
             <el-table-column
             prop="transportationMeter"
             label="运输米数">
-            </el-table-column>
+            </el-table-column> -->
 
             <el-table-column
             prop="totalWeight"

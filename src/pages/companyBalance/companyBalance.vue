@@ -17,7 +17,58 @@
             
             <el-button  type="primary" size="large" class="M-Btn" @click="searchData">搜索</el-button>
         </div>
-        <div class="P-companyBalanceCon">
+        <table class="P-companyBalanceTable">
+            <tr>
+                <td>发货地</td>
+                <td>收货地</td>
+                <td>规格型号</td>
+                <td>理论重量</td>
+                <td>运输米数</td>
+                <td>总重量</td>
+                <td>单价</td>
+                <td>金额</td>
+            </tr>
+            <tr class="row">
+                <td>{{allDat.startPlace}}</td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.endPlace}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index" v-show="a.model">
+                        {{a.model}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.theoreticalWeight||0}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.allTransportationMeter||0}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.allTotalWeight||0}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.unitPrice||0}}
+                    </div>
+                </td>
+                <td class="col">
+                    <div  v-for="a in allDat.items" track-by="$index">
+                        {{a.money||0}}
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+        <!-- <div class="P-companyBalanceCon">
             <div  class="P-companyBalanceMain">
                 <div>发货地</div>
                 <div>收货地</div>
@@ -38,7 +89,7 @@
                 <div>{{allDat.allTotalWeight||0}}</div>
                 <div>{{allDat.allMoney||0}}</div>
             </div>
-        </div>
+        </div> -->
         <div class="P-companyBalanceExport">
             <el-button  type="primary" size="large" class="M-Btn" @click="exportDat">导出</el-button>
        </div>

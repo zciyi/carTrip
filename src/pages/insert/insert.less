@@ -101,8 +101,31 @@
     .el-table{
         border: 1px solid #ebeef5;
         border-bottom:none; 
+        td{
+            overflow: hidden;
+        }
     }
     .el-autocomplete{
         width: 100%;
+    }
+    .el-select{
+        // padding-left: 20px;
+        .el-input{
+            line-height: normal;
+            .el-input__inner{
+                line-height: normal;
+            }
+        }
+    }
+    .deleteModel{
+        position: absolute;
+        top: 10px;
+    }
+    .model{
+        position: relative;
+    }
+    .divItem{
+        border-bottom:1px solid #000000;
+        padding: 10px 0; 
     }
 }

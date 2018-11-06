@@ -34,9 +34,6 @@ import './NavMenu.less'
           },{
             text:"规格",
             path:"/modelList"
-          },{
-            text:"insertTpm",
-            path:"/insertTpm"
           }]
           ,activeName:this.$route.path||"/list"
         }

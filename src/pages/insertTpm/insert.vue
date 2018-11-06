@@ -98,36 +98,29 @@
             label="规格型号">
                 <template slot-scope="scope">
                     <!-- <input type="text" v-model="scope.row.model" />  -->
-                    <div v-for="(p,k) in scope.row.productDtoList" track-by="$index" class="model divItem">
-                        <!-- <span @click="deleteModel(scope,k)" class="deleteModel"> X</span> -->
-                        <el-select v-model="p.model" placeholder="请选择" 
-                        @change="modelListChange(scope,k)">
-                            <el-option
-                                v-for="item in modelOptions"
-                                :key="item.id"
-                                :label="item.model"
-                                :value="item.id">
-                            </el-option>
-                        </el-select>
-                    </div> 
+                    <el-select v-model="scope.row.model" placeholder="请选择" 
+                    @change="modelListChange(scope)">
+                        <el-option
+                            v-for="item in modelOptions"
+                            :key="item.id"
+                            :label="item.model"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
                 </template>
             </el-table-column>
             <el-table-column
             prop="theoreticalWeight"
             label="理论重量">
                 <template slot-scope="scope">
-                    <div v-for=" p in scope.row.productDtoList" track-by="$index" class="divItem">
-                        <input type="text" v-model="p.theoreticalWeight" /> 
-                    </div>
+                    <input type="text" v-model="scope.row.theoreticalWeight" /> 
                 </template>
             </el-table-column>
             <el-table-column
             prop="transportationMeter"
             label="运输米数">
                 <template slot-scope="scope">
-                    <div v-for=" p in scope.row.productDtoList" track-by="$index" class="divItem">
-                        <input type="text" v-model="p.transportationMeter" /> 
-                    </div> 
+                    <input type="text" v-model="scope.row.transportationMeter" /> 
                 </template>
             </el-table-column>
 
@@ -200,7 +193,6 @@
                 width="100">
                 <template slot-scope="scope">
                     <!-- <el-button @click="add(scope)" type="text" size="small">编辑</el-button> -->
-                    <el-button @click="addModel(scope)" type="text" size="small">新增规格</el-button>
                     <el-button @click="deleteList(scope)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>
@@ -238,7 +230,7 @@
 </template>
 
 <script>
-    import './insertTpm.less'
+    import './insert.less'
     var format  ={
         // 乘法精度问题
         mul:function(a, b) {
@@ -384,11 +376,7 @@
                 return Number(val.toString().match(/^\d+(?:\.\d{0,5})?/))
             },
             leaveTable(row, column, cell, event){
-                var totalWeight=0;
-                for(var i=0;i<row.productDtoList.length;i++){
-                    totalWeight= format.add(totalWeight, format.mul(row.productDtoList[i].theoreticalWeight,row.productDtoList[i].transportationMeter) )
-                }
-                row.totalWeight=totalWeight;
+                row.totalWeight=this.formatNum(format.mul(row.theoreticalWeight,row.transportationMeter)) 
                 row.oneHundredKilometersOil = this.formatNum(row.totalWeight?format.add(40,format.mul(format.subtraciotn(row.totalWeight,40),0.4)):0)
                 row.oneKilometersOil =  this.formatNum(row.oneHundredKilometersOil/100);
                 row.totalOil = this.formatNum(format.mul(row.transportationKilometers,row.oneKilometersOil));
@@ -420,13 +408,11 @@
                     driverName:this.base.driverName||'',
                     startPlace:this.base.startPlace||'',
                     endPlace:this.base.endPlace||'',
-                    productDtoList:[{
-                        model:this.base.model||'',
-                        theoreticalWeight:this.base.theoreticalWeight||'',
-                        transportationMeter:''
-                    }],
+                    model:this.base.model||'',
+                    theoreticalWeight:this.base.theoreticalWeight||'',
                     oneTripExtract:this.base.oneTripExtract||'',
                     unitPrice:this.base.unitPrice||'',
+                    transportationMeter:'',
                     totalWeight:'',
                     transportationKilometers:'',
                     oneHundredKilometersOil:'',
@@ -450,16 +436,13 @@
                 }
                 var me =this;
                 this.tableData.forEach(function(t){
-                    t.productDtoList.forEach(function(p){
-                        var model;
-                        me.modelOptions.forEach(function(m){
-                            if(p.model===m.id){
-                                model = m.model;
-                            }
-                        })
-                        p.model = model;
+                    var model;
+                    me.modelOptions.forEach(function(m){
+                        if(t.model===m.id){
+                            model = m.model;
+                        }
                     })
-                    
+                    t.model = model;
                 })
                 if(me.load)return
                 me.load = true
@@ -548,26 +531,15 @@
                     }
                 })
             },
-            modelListChange(scope,k){
+            modelListChange(scope){
                 var theoreticalWeight
                 this.modelOptions.forEach(function(m){
-                    if(m.id===scope.row.productDtoList[k].model){
+                    if(m.id===scope.row.model){
                         theoreticalWeight = m.theoreticalWeight;
                     }
                 })
-                this.tableData[scope.$index].productDtoList[k].theoreticalWeight = theoreticalWeight||0;
-                this.$set(this.tableData,scope.$index, this.tableData[scope.$index])
+                this.tableData[scope.$index].theoreticalWeight = theoreticalWeight||0;
 
-            },
-            addModel(scope){
-                scope.row.productDtoList.push({
-                    model:this.base.model||'',
-                    theoreticalWeight:this.base.theoreticalWeight||'',
-                    transportationMeter:''
-                })
-            },
-            deleteModel(scope,index){
-                scope.row.productDtoList.splice(index,1)
             }
         }
         

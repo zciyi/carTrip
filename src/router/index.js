@@ -11,7 +11,6 @@ import expenseInsert from "@/pages/expenseInsert/expenseInsert"
 import expenseList from "@/pages/expenseList/expenseList"
 import expenseReport from "@/pages/expenseReport/expenseReport"
 import modelList from "@/pages/model/model"
-import insertTpm from "@/pages/insertTpm/insertTpm"
 
 
 
@@ -30,8 +29,7 @@ var routes = new Router({
         { path: '/expenseInsert', component: expenseInsert, name: 'expenseInsert',text:"车辆费用录入"},
         { path: '/expenseList', component: expenseList, name: 'expenseList',text:"车辆费用明细"},
         { path: '/expenseReport', component: expenseReport, name: 'expenseReport',text:"车辆工资报表"},
-        { path: '/modelList', component: modelList, name: 'modelList',text:"规格"},
-        { path: '/insertTpm', component: insertTpm, name: 'insertTpm',text:"车队运输明细录入tpm"}
+        { path: '/modelList', component: modelList, name: 'modelList',text:"规格"}
       ]
     },
     {

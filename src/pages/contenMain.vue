@@ -91,9 +91,6 @@ export default {
       },{
         text:"规格",
         path:"/modelList"
-      },{
-        text:"insertTpm",
-        path:"/insertTpm"
       }]
       this.forItem(breadcrumb,val,cur,[])
       return cur

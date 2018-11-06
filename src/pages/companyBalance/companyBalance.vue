@@ -131,14 +131,6 @@
                     endTime:""
                 },
                 allDat:{
-                    startPlace:'',
-                    endPlace:'',
-                    model:'',
-                    theoreticalWeight:'',
-                    unitPrice:'',
-                    allTransportationMeter:'',
-                    allTotalWeight:'',
-                    allMoney:''
                 },
                 queryDat:{
                     carNumber:'',

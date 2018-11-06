@@ -98,10 +98,10 @@
             label="规格型号">
                 <template slot-scope="scope">
                     <!-- <input type="text" v-model="scope.row.model" />  -->
-                    <div v-for="(p,k) in scope.row.productDtoList" track-by="$index">
+                    <div v-for="(p,k) in scope.row.productDtoList" track-by="$index" class="model">
                         <span @click="deleteModel(scope,k)" class="deleteModel"> X</span>
                         <el-select v-model="p.model" placeholder="请选择" 
-                        @change="modelListChange(scope)">
+                        @change="modelListChange(scope,k)">
                             <el-option
                                 v-for="item in modelOptions"
                                 :key="item.id"
@@ -450,13 +450,16 @@
                 }
                 var me =this;
                 this.tableData.forEach(function(t){
-                    var model;
-                    me.modelOptions.forEach(function(m){
-                        if(t.model===m.id){
-                            model = m.model;
-                        }
+                    t.productDtoList.forEach(function(p){
+                        var model;
+                        me.modelOptions.forEach(function(m){
+                            if(p.model===m.id){
+                                model = m.model;
+                            }
+                        })
+                        p.model = model;
                     })
-                    t.model = model;
+                    
                 })
                 if(me.load)return
                 me.load = true
@@ -545,14 +548,15 @@
                     }
                 })
             },
-            modelListChange(scope){
+            modelListChange(scope,k){
                 var theoreticalWeight
                 this.modelOptions.forEach(function(m){
-                    if(m.id===scope.row.model){
+                    if(m.id===scope.row.productDtoList[k].model){
                         theoreticalWeight = m.theoreticalWeight;
                     }
                 })
-                this.tableData[scope.$index].theoreticalWeight = theoreticalWeight||0;
+                this.tableData[scope.$index].productDtoList[k].theoreticalWeight = theoreticalWeight||0;
+                this.$set(this.tableData,scope.$index, this.tableData[scope.$index])
 
             },
             addModel(scope){

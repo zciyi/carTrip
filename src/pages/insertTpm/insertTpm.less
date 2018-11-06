@@ -1,0 +1,112 @@
+.P-insert{
+    .addBtn{
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    &Base{
+        
+        margin: 20px 0;
+        position: relative;
+        text-align: left;
+        display:flex;
+        &Tip{
+            position: absolute;
+            width: 95px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            left: 0;
+            height: 100%;
+            line-height: 100%;
+            padding-left: 6px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e8e8e8;
+            border-top: 1px solid #e8e8e8;
+            border-left: 1px solid #e8e8e8;
+
+        }
+        &Main{
+            margin-left:95px;
+            border: 1px solid #e8e8e8;
+            border-bottom: none;
+            border-right: none;
+        }
+        &Con{
+            display:flex;
+            font-size: 12px;
+            >div{
+                flex: 1;
+                line-height: 40px;
+                border-bottom: 1px solid #e8e8e8;
+                border-right: 1px solid #e8e8e8;
+                padding:0  6px; 
+                input{
+                    width: 100%;
+                    margin: 0;
+                    padding:0  6px; 
+                    box-sizing: border-box;
+                    border: none;
+
+                }
+            }
+            .el-input__icon::before{
+                content: "";
+    
+            }
+            .el-date-editor.el-input{
+                width: 100%;
+                line-height: normal;
+                height: auto;
+                input{
+                    line-height: normal;
+                    font-size:12px; 
+                }
+            }
+
+        }
+    }
+    .tableDiv{
+        padding: 10px 0;
+        border-bottom: 1px solid #909399;
+    }
+    .cell{
+        font-size: 12px;
+        width: 120px;
+        text-align: left;
+        .tableDiv:last-child{
+            border-bottom: none;
+        }
+        padding: 0 6px;
+        input{
+            width: 100%;
+            margin: 0;
+            padding:0  6px; 
+            box-sizing: border-box;
+            border: none;
+            font-size: 12px;
+        }
+        .el-input__icon::before{
+            content: "";
+
+        }
+        .el-date-editor.el-input{
+            width: 100%;
+            line-height: normal;
+            height: auto;
+            input{
+                line-height: normal;
+            }
+        }
+    }
+    .el-table{
+        border: 1px solid #ebeef5;
+        border-bottom:none; 
+    }
+    .el-autocomplete{
+        width: 100%;
+    }
+    .deleteModel{
+        position: absolute;
+        top: 0;
+    }
+}

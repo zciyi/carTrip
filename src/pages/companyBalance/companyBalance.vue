@@ -27,6 +27,7 @@
                 <td>总重量</td>
                 <td>单价</td>
                 <td>金额</td>
+                <td>全部金额</td>
             </tr>
             <tr class="row" v-show="allDat.startPlace">
                 <td>{{allDat.startPlace}}</td>
@@ -78,9 +79,10 @@
                         </div>
                     </div>
                 </td>
+                <td>{{allDat.allMoney||0}}</td>
             </tr>
             <tr v-show="!allDat.startPlace">
-                <td colspan="8">暂无数据</td>
+                <td colspan="9">暂无数据</td>
             </tr>
             
         </table>

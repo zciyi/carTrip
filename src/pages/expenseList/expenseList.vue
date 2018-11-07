@@ -107,8 +107,8 @@
                 tableData: [],
                 currentPage:1,
                 total:0,
-                pagesSize:5,
-                pagesSizes:[5,10,20,30,40,50],
+                pagesSize:100,
+                pagesSizes:[100,200,500,1000],
                 search:{
                     carNumber:"",
                     startPlace:"",

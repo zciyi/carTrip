@@ -124,7 +124,7 @@
                 label="操作"
                 width="100">
                 <template slot-scope="scope">
-                    <!-- <el-button @click="add(scope)" type="text" size="small">编辑</el-button> -->
+                    <el-button @click="add(scope)" type="text" size="small">编辑</el-button>
                     <el-button @click="deleteList(scope)" type="text" size="small">删除</el-button>
                 </template>
             </el-table-column>
@@ -285,7 +285,13 @@
                 var url= this.$config.protocol+"://"+this.$config.biServer+this.$config.apis["/exportCarTripList"]+"?" ;
                 if(this.queryDat){
                     Object.keys(this.queryDat).forEach(function(item){
-                        url+=item+"="+me.queryDat[item]+"&"
+                        if(item == 'startTime' || item == 'endTime'){
+                            if(me.queryDat[item]){
+                                url+=item+"="+timeString(me.queryDat[item])+"&"
+                            }
+                        }else{
+                            url+=item+"="+me.queryDat[item]+"&"
+                        }
                     })
                 }
                 url+="X-Authorization="+Token;

@@ -12,7 +12,7 @@
                     <el-input v-model="form.carNumber" placeholder="请输入车牌号"></el-input>
             </el-form-item>
             <el-form-item label="驾驶员" required>
-                <el-input v-model="form.dirverName" placeholder="请输入驾驶员"></el-input>
+                <el-input v-model="form.driverName" placeholder="请输入驾驶员"></el-input>
             </el-form-item>
             <el-form-item label="发货地" required>
                 <el-input v-model="form.startPlace" placeholder="请输入发货地"></el-input>
@@ -185,7 +185,7 @@
                     "transportationKilometers": 0,
                     "tripTime": "",
                     "unitPrice": 0,
-                    "dirverName":"",
+                    "driverName":"",
                     tpm:{
                         "model": "",
                         "theoreticalWeight": '',
@@ -395,6 +395,9 @@
                 });
 
             }
+            ,formatNum(val){
+                return Number(val.toString().match(/^\d+(?:\.\d{0,5})?/))
+            }
         }
         , watch: {
             "form.productDtoList": function (nval, oval) {
@@ -409,15 +412,35 @@
                     this.form.oneKilometersOil =  this.form.oneHundredKilometersOil/100;
                     this.form.totalOil = format.mul(this.form.transportationKilometers,this.form.oneKilometersOil)
                     
+
+                    if(this.form.totalWeight && Number(this.form.totalWeight)>70){
+                        if(this.form.transportationKilometers > 120){
+                            this.form.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(this.form.totalWeight,70),7));
+                        }else{
+                            this.form.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(this.form.totalWeight,70),5));
+                        }
+                    }else{
+                        this.form.overWeightExtract = 0;
+                    }
                 }
             },
             "form.transportationKilometers": function (nval, oval) {
                 if(nval){
                     this.form.totalOil = format.mul(this.form.transportationKilometers,this.form.oneKilometersOil);
-                    if(Number(nval)>70&&Number(nval)<=110){
-                        this.form.overWeightExtract = format.mul(format.subtraciotn(nval,70),5);
-                    }else if(Number(nval)>110){
-                        this.form.overWeightExtract = format.mul(format.subtraciotn(nval,110),7);
+                    // if(Number(nval)>70&&Number(nval)<=110){
+                    //     this.form.overWeightExtract = format.mul(format.subtraciotn(nval,70),5);
+                    // }else if(Number(nval)>110){
+                    //     this.form.overWeightExtract = format.mul(format.subtraciotn(nval,110),7);
+                    // }else{
+                    //     this.form.overWeightExtract = 0;
+                    // }
+
+                    if(Number(this.form.totalWeight)>70){
+                        if(this.form.transportationKilometers > 120){
+                            this.form.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(this.form.totalWeight,70),7));
+                        }else{
+                            this.form.overWeightExtract = this.formatNum(format.mul(format.subtraciotn(this.form.totalWeight,70),5));
+                        }
                     }else{
                         this.form.overWeightExtract = 0;
                     }

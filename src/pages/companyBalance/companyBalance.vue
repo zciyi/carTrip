@@ -173,13 +173,18 @@
             exportDat(){
                 if(!this.queryDat ||!this.queryDat.startPlace){
                     return this.tip( '请搜索发货地');
-
                 }
                 var me =this
                 var url= this.$config.protocol+"://"+this.$config.biServer+this.$config.apis["/exportCarTripCompanyBalance"]+"?" ;
                 if(this.queryDat){
                     Object.keys(this.queryDat).forEach(function(item){
-                        url+=item+"="+me.queryDat[item]+"&"
+                        if(item == 'startTime' || item == 'endTime'){
+                            if(me.queryDat[item]){
+                                url+=item+"="+timeString(me.queryDat[item])+"&"
+                            }
+                        }else{
+                            url+=item+"="+me.queryDat[item]+"&"
+                        }
                     })
                 }
                 url+="X-Authorization="+Token;

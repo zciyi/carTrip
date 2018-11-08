@@ -372,7 +372,8 @@
                     model:(base&&base.model)||'',
                     theoreticalWeight:(base&&base.theoreticalWeight)||'',
                     oneTripExtract:(base&&base.oneTripExtract)||'',
-                    unitPrice:(base&&base.unitPrice)||''
+                    unitPrice:(base&&base.unitPrice)||'',
+                    transportationKilometers:(base&&base.transportationKilometers)||''
                 },
                 tableData:[]
                 ,pop:{

@@ -449,7 +449,9 @@
                     return this.tip('请添加数据');
                 }
                 var me =this;
-                this.tableData.forEach(function(t){
+                var data = JSON.stringify(this.tableData);
+                 data = JSON.parse(data);
+                 data.forEach(function(t){
                     t.productDtoList.forEach(function(p){
                         var model;
                         me.modelOptions.forEach(function(m){
@@ -468,7 +470,7 @@
                     method:"post",
                     params:{},
                     data:{
-                        items:this.tableData
+                        items:data
                     }
                 }).then(function(re){
                     me.load = false;

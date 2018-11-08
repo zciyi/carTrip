@@ -86,7 +86,7 @@
                         <!-- <input type="text" v-model="base.model" /> -->
                     </div>
                     <div><input type="text" v-model="base.theoreticalWeight" /></div>
-                    <div><input type="text" v-model="base.transportationKilometers" /></div>
+                    <div><input type="text" v-model="base.transportationKilometers"  @click="showPop(base.transportationKilometers,'base','运输公里数','transportationKilometers')" /></div>
                     <div><input type="text" v-model="base.oneTripExtract" /></div>
                     <div><input type="text" v-model="base.unitPrice" /></div>
                 </div>
@@ -404,7 +404,9 @@
                 },
                 options:{
                     startPlace:(options&&options.startPlace)||[],
-                    endPlace:(options&&options.endPlace)||[]
+                    endPlace:(options&&options.endPlace)||[],
+                    transportationKilometers:(options&&options.transportationKilometers)||[]
+                
                 },
                 modelOptions:[]
             }

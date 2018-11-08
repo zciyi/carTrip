@@ -1,6 +1,51 @@
 <template>
     <div class="P-insert">
         <div class="P-insertBase">
+            <!-- <table>
+                <tr>
+                    <td rowspan="2">批量默认值</td>
+                    <td>日期</td>
+                    <td>车牌号</td>
+                    <td>驾驶员</td>
+                    <td>发货地</td>
+                    <td>收货地</td>
+                    <td>规格型号</td>
+                    <td>理论重量</td>
+                    <td>运输公里数</td>
+                    <td>单趟提成</td>
+                    <td>单价/吨</td>
+                </tr>
+                <tr>
+                    <td>
+                        <el-date-picker
+                            v-model="base.tripTime" 
+                            type="date"
+                            placeholder="选择日期">
+                        </el-date-picker>
+                    </td>
+                    <td>
+                        <input type="text" v-model="base.carNumber" />
+                    </td>
+                    <td><input type="text" v-model="base.driverName" /></td>
+                    <td><input type="text" v-model="base.startPlace" @click="showPop(base.startPlace,'base','发货地','startPlace')" /></td>
+                    <td><input type="text" v-model="base.endPlace" @click="showPop(base.endPlace,'base','收货地','endPlace')" /></td>
+                    <td>
+                        <el-select v-model="base.model" placeholder="请选择" 
+                        @change="modelChange">
+                            <el-option
+                                v-for="item in modelOptions"
+                                :key="item.id"
+                                :label="item.model"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </td>
+                    <td><input type="text" v-model="base.theoreticalWeight" /></td>
+                    <td><input type="text" v-model="base.transportationKilometers" /></td>
+                    <td><input type="text" v-model="base.oneTripExtract" /></td>
+                    <td><input type="text" v-model="base.unitPrice" /></td>
+                </tr>
+            </table> -->
             <div class="P-insertBaseTip">批量默认值</div>
             <div class="P-insertBaseMain">
                 <div  class="P-insertBaseCon">
@@ -11,6 +56,7 @@
                     <div>收货地</div>
                     <div>规格型号</div>
                     <div>理论重量</div>
+                    <div>运输公里数</div>
                     <div>单趟提成</div>
                     <div>单价/吨</div>
                     
@@ -40,6 +86,7 @@
                         <!-- <input type="text" v-model="base.model" /> -->
                     </div>
                     <div><input type="text" v-model="base.theoreticalWeight" /></div>
+                    <div><input type="text" v-model="base.transportationKilometers" /></div>
                     <div><input type="text" v-model="base.oneTripExtract" /></div>
                     <div><input type="text" v-model="base.unitPrice" /></div>
                 </div>
@@ -428,7 +475,7 @@
                     oneTripExtract:this.base.oneTripExtract||'',
                     unitPrice:this.base.unitPrice||'',
                     totalWeight:'',
-                    transportationKilometers:'',
+                    transportationKilometers:this.base.transportationKilometers||'',
                     oneHundredKilometersOil:'',
                     oneKilometersOil:'',
                     totalOil:'',

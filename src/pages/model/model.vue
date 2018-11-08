@@ -73,7 +73,7 @@
                         if(!isPass||me.load) return
                     
                         var type =false
-                        if(me.pop.item.index||me.pop.item.index===0){
+                        if(me.pop.item&&(me.pop.item.index||me.pop.item.index===0)){
                             me.$set(me.tableData,me.pop.item.index,me.$util.extend({},me.pop.item,me.form))
                         }else{
                             var addIndex = me.tableData.length
@@ -92,9 +92,8 @@
                         }).then(function(re){
                         if(re){
                             me.tip('保存成功');
-                            if(type){
-                                me.getData(me.currentPage,me.pagesSize);
-                            }
+                            me.getData(me.currentPage,me.pagesSize);
+                            
                         }
                         me.load = false;
                         },function(){
@@ -157,7 +156,7 @@
                     "theoreticalWeight": row.theoreticalWeight||""
                     }
                 }else{
-                    this.pop.item={}
+                    this.pop.item={};
                     this.form ={
                     "model": "",
                     "theoreticalWeight": ""

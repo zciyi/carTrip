@@ -18,7 +18,7 @@
             <el-button  type="primary" size="large" class="M-Btn" @click="searchData">搜索</el-button>
         </div>
         <table class="P-companyBalanceTable">
-            <tr>
+            <tr v-show="!allDat.startPlace" class="nodata">
                 <td>发货地</td>
                 <td>收货地</td>
                 <td>规格型号</td>
@@ -29,59 +29,28 @@
                 <td>金额</td>
                 <td>全部金额</td>
             </tr>
-            <tr class="row" v-show="allDat.startPlace">
-                <td>{{allDat.startPlace}}</td>
-                <td class="col">
-                    <div  v-for="a in allDat.items" track-by="$index">
-                        {{a.endPlace}}
-                    </div>
+            <tr v-show="allDat.startPlace">
+                <td class="row" ><tr>
+                    <td>发货地</td></tr>
+                    <tr><td>{{allDat.startPlace}}</td></tr>
                 </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.model}}
-                        </div>
-                    </div>
+                <td colspan="7" class="col" rowspan="2">
+                    <tr v-for="a in allDat.items" track-by="$index">
+                       <td>{{a.endPlace}}</td> 
+                        <td><div  v-for="i in a.items"> {{i.model}}</div></td>
+                        <td><div  v-for="i in a.items"> {{i.theoreticalWeight||0}}</div></td>
+                        <td><div  v-for="i in a.items"> {{i.allTransportationMeter||0}}</div></td>
+                        <td><div  v-for="i in a.items"> {{i.allTotalWeight||0}}</div></td>
+                        <td><div  v-for="i in a.items"> {{i.unitPrice||0}}</div></td>
+                        <td><div  v-for="i in a.items"> {{i.money||0}}</div></td>
+                    </tr>
                 </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.theoreticalWeight||0}}
-                        </div>
-                        
-                    </div>
-                </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.allTransportationMeter||0}}
-                        </div>
-                    </div>
-                </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.allTotalWeight||0}}
-                        </div>
-                    </div>
-                </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.unitPrice||0}}
-                        </div>
-                    </div>
-                </td>
-                <td class="col">
-                    <div  v-for="a in allDat.items"   track-by="$index">
-                        <div  v-for="i in a.items"   >
-                            {{i.money||0}}
-                        </div>
-                    </div>
-                </td>
-                <td>{{allDat.allMoney||0}}</td>
+                <td class="row" ><tr>
+                    <td>全部金额</td></tr>
+                    <tr><td>{{allDat.allMoney||0}}</td>
+                </tr></td>
             </tr>
-            <tr v-show="!allDat.startPlace">
+            <tr v-show="!allDat.startPlace" class="nodata">
                 <td colspan="9">暂无数据</td>
             </tr>
             
@@ -160,6 +129,22 @@
                         endTime:timeString(qr&&qr.endTime)||''
                     }
                 }).then(function(re){
+                    if(re.items){
+                        re.items =re.items.reverse();
+                        re.items.push({
+                            endPlace:'收货地',
+                            items:[{
+                                model:'规格型号',
+                                theoreticalWeight:'理论重量',
+                                allTransportationMeter:'运输米数',
+                                allTotalWeight:'总重量',
+                                unitPrice:'单价',
+                                money:'金额'
+                            }]
+                            
+                        })
+                        re.items =re.items.reverse();
+                    }
                     me.allDat = re;
                 })
             },

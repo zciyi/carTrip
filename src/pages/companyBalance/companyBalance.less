@@ -62,20 +62,32 @@
         border-top: 1px solid #e8e8e8;
         border-spacing:0;
         td{
-            border-right: 1px solid #e8e8e8;
-            border-bottom: 1px solid #e8e8e8;
+           
             line-height: 30px;
         }
-        .col{
-            div{
+        .row{
+            width: 5%;
+            tr{
+                border-right: 1px solid #e8e8e8;
                 border-bottom: 1px solid #e8e8e8;
             }
-            div:last-child{
-                border: none;
+        }
+        .col{
+            width: 90%;
+            display: table;
+            tr  td:first-child{
+                border-left: 1px solid #e8e8e8;
             }
             td{
-                border:none;
+               
+                border-right: 1px solid #e8e8e8;
+                border-bottom: 1px solid #e8e8e8;
+               
             }
+        }
+        .nodata td{
+            border-right: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
         }
     }
 }

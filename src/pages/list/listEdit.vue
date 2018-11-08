@@ -76,7 +76,16 @@
         center>
             <el-form ref="form" :model="form" label-width="150px" >
                 <el-form-item label="规格型号" required>
-                    <el-input v-model="form.tpm.model" placeholder="请输入规格型号"></el-input>
+                    <el-select v-model="form.tpm.model" placeholder="请选择规格型号" 
+                    @change="modelChange">
+                        <el-option
+                            v-for="item in modelOptions"
+                            :key="item.id"
+                            :label="item.model"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                    <!-- <el-input v-model="form.tpm.model" placeholder="请输入规格型号"></el-input> -->
                 </el-form-item>
                 <el-form-item label="理论重量" required >
                     <el-input v-model="form.tpm.theoreticalWeight" placeholder="请输入理论重量"></el-input>
@@ -192,7 +201,8 @@
                         "transportationMeter": ''
                     }
                 },
-                tableData:[]
+                tableData:[],
+                modelOptions:[]
                 ,pop:{
                 visible:false,
                 item:{},
@@ -225,13 +235,23 @@
                     }
                     
                     var tip = me.checkData(validate,me.form.tpm)
+                   
                     if(!tip){
                         return false
                     }
-                    if(me.pop.item.index||me.pop.item.index===0){
-                         me.$set(me.form.productDtoList,me.pop.item.index,me.form.tpm)
+                    var model 
+                    me.modelOptions.forEach(function(m){
+                        if(m.id===me.form.tpm.model){
+                            model = m.model;
+                        }
+                    })
+                    var tpm = JSON.stringify(me.form.tpm)
+                    tpm = JSON.parse(tpm)
+                    tpm.model=model?model:tpm.model
+                    if(me.pop.item&&(me.pop.item.index||me.pop.item.index===0)){
+                         me.$set(me.form.productDtoList,me.pop.item.index,tpm)
                     }else{
-                        me.form.productDtoList.push(me.form.tpm)
+                        me.form.productDtoList.push(tpm)
                     }
                     me.pop.visible =false;
 
@@ -241,8 +261,16 @@
             }
         }
         ,created:function(){
+            var me = this;
+            this.$request({
+                url:"/getCarTripModelList",
+                method:"get",
+                query:{
+                }
+            }).then(function(re){
+                me.modelOptions = re;
+            })
             if(this.$route.query.id){
-                var me = this;
                 this.$request({
                     url:"/getCarTrip",
                     method:"get",
@@ -274,6 +302,8 @@
                         "transportationMeter": row.transportationMeter||''
                     }
                 }else{
+                    
+                    this.pop.item=null;
                     this.form.tpm ={
                         "model": "",
                         "theoreticalWeight": '',
@@ -397,6 +427,14 @@
             }
             ,formatNum(val){
                 return Number(val.toString().match(/^\d+(?:\.\d{0,5})?/))
+            }
+            ,modelChange(nval){
+                var me = this;
+                this.modelOptions.forEach(function(m){
+                    if(m.id===nval){
+                        me.form.tpm.theoreticalWeight = m.theoreticalWeight;
+                    }
+                })
             }
         }
         , watch: {

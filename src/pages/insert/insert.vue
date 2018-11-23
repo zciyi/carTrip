@@ -239,7 +239,7 @@
                 baseNum2 = 0;  
             }  
             baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));  
-            return (num1 * baseNum + num2 * baseNum) / baseNum;  
+            return (this.mul(num1 , baseNum) + this.mul(num2 , baseNum) ) / baseNum;  
         },
         //减法函数
         subtraciotn:function(arg1, arg2) {
